@@ -166,3 +166,71 @@ snippet noscw "expect was not called with (js)" b
 expect(${1:target}).wasNotCalledWith(${2:arguments});
 endsnippet
 
+#
+# AngularJS Snippets
+#
+
+# This is a simple global Python function to return a space if the provided
+# stop was not blank.
+global !p
+_pad = lambda t, c: " " if len(t[c]) else ""
+endglobal
+
+snippet ngc "An AngularJS Controller Function" !b
+var ${1:MyCtrl} = function ( $scope ) {
+  $0
+}
+endsnippet
+
+snippet ngctrlf "A function within an AngularJS controller" !b
+$scope.${1:myFunctionName} = function(`!p snip.rv = _pad(t,2)`${2}`!p snip.rv = _pad(t,2)`) {
+  $0
+}
+endsnippet
+
+snippet ngm "An AngularJS Module Definition" !b
+var ${1:MyModule} = angular.module('$1', []);$0
+endsnippet
+
+snippet ngdl "An AngularJS Directive with a `link` Function" !b
+.directive( '${1:MyDirective}', function(`!p snip.rv = _pad(t,2)`${2}`!p snip.rv = _pad(t,2)`) {
+
+  return function( scope, element, attrs ) {
+    $0
+  }
+
+});
+endsnippet
+
+snippet ngdc "An AngularJS Directive with a `compile` Function" !b
+.directive( '${1:MyDirective}', function factory(`!p snip.rv = _pad(t,2)`${2}`!p snip.rv = _pad(t,2)`) {
+
+  var $1Object = {
+    ${2}
+    compile: function compile( tElement, tAttrs, transclude ) {
+      
+      return function( scope, element, attrs ) {
+        $0
+      }
+
+    }
+  }
+
+});
+endsnippet
+
+snippet nglf "An AngularJS `link` Function" !b
+function( scope, element, attrs ) {
+  $0
+}
+endsnippet
+
+snippet ngcf "An AngularJS `compile` Function" !b
+function compile( tElement, tAttrs, transclude ) {
+  $0
+  return function( scope, element, attrs ) {
+  }
+
+}
+endsnippet
+
