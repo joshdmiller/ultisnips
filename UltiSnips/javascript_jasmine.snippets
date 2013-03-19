@@ -222,12 +222,15 @@ angular.module( '${1:MyModule}', [
 ])$0
 endsnippet
 
-snippet ngd "A generic AngularJS directive" !b
+snippet directive "A generic AngularJS directive" !b
 .directive( '${1:MyDirective}', [ function() {
   return {
-    scope: ${2:true}
+    scope: ${2:true},
+    link: function( scope, element, attrs ) {
+      $3
+    }
   };
-}]);
+}])$0
 endsnippet
 
 snippet ngdl "An AngularJS Directive with a `link` Function" !b
@@ -257,16 +260,16 @@ snippet ngdc "An AngularJS Directive with a `compile` Function" !
 });
 endsnippet
 
-snippet nglf "An AngularJS `link` Function" !
-function( scope, element, attrs ) {
+snippet link "An AngularJS `link` Function" !
+link: function link ( scope, element, attrs ) {
   $0
 }
 endsnippet
 
-snippet ngcf "An AngularJS `compile` Function" !
-function compile( tElement, tAttrs, transclude ) {
+snippet compile "An AngularJS `compile` Function" !
+compile: function compile ( tElement, tAttrs, transclude ) {
   $0
-  return function( scope, element, attrs ) {
+  return function link ( scope, element, attrs ) {
   }
 
 }
@@ -282,6 +285,12 @@ snippet svc "An AngularJS factory service" !b
 .factory( '${1:myFactory}', [ function () {
   $0
 }]);
+endsnippet
+
+snippet run "A config block for the $routeProvider" !b
+.run([ '${1:$rootScope}', function config( $1 ) {
+  $0
+}])
 endsnippet
 
 snippet ngr "A config block for the $routeProvider" !b
