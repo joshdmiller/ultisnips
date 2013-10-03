@@ -41,12 +41,24 @@ describe( '${1:description}', function() {
 endsnippet
 
 snippet it "it (js)" b
+it( '${1:description}', function() {
+	$0
+});
+endsnippet
+
+snippet iti "it inject(js)" b
 it( '${1:description}', inject( function(`!p snip.rv = _pad(t,2)`${2}`!p snip.rv = _pad(t,2)`) {
 	$0
 }));
 endsnippet
 
 snippet bef "before each (js)" b
+beforeEach( function() {
+	$0
+});
+endsnippet
+
+snippet befi "before each inject(js)" b
 beforeEach( inject( function(`!p snip.rv = _pad(t,1)`${1}`!p snip.rv = _pad(t,1)`) {
 	$0
 }));
@@ -205,32 +217,31 @@ endsnippet
 #
 
 snippet ctrl "An AngularJS Controller Function" !b
-.controller( '${1:MyCtrl}', [ '$scope', function $1( $scope ) {
+.controller( '${1:My}Ctrl', function $1Ctrl ( $scope ) {
   $0
-}])
+})
 endsnippet
 
-snippet ngctrlf "A function within an AngularJS controller" !b
-$scope.${1:myFunctionName} = function(`!p snip.rv = _pad(t,2)`${2}`!p snip.rv = _pad(t,2)`) {
+snippet $fn "A function within an AngularJS controller" !b
+$scope.${1:myFunctionName} = function (`!p snip.rv = _pad(t,2)`${2}`!p snip.rv = _pad(t,2)`) {
   $0
-}
+};
 endsnippet
 
 snippet module "An AngularJS Module Definition" !b
 angular.module( '${1:MyModule}', [
-  $2
 ])$0
 endsnippet
 
 snippet directive "A generic AngularJS directive" !b
-.directive( '${1:MyDirective}', [ function() {
+.directive( '${1:MyDirective}', function() {
   return {
     scope: ${2:true},
     link: function( scope, element, attrs ) {
       $3
     }
   };
-}])$0
+})$0
 endsnippet
 
 snippet ngdl "An AngularJS Directive with a `link` Function" !b
@@ -282,9 +293,9 @@ attrs.$observe( '${1:attribute}', function ( $1 ) {
 endsnippet
 
 snippet svc "An AngularJS factory service" !b
-.factory( '${1:myFactory}', [ function () {
+.factory( '${1:myFactory}', function (`!p snip.rv = _pad(t,2)`${2}`!p snip.rv = _pad(t,2)`) {
   $0
-}]);
+})
 endsnippet
 
 snippet run "A config block for the $routeProvider" !b
@@ -294,15 +305,39 @@ snippet run "A config block for the $routeProvider" !b
 endsnippet
 
 snippet ngr "A config block for the $routeProvider" !b
-.config([ '$routeProvider', function config( $routeProvider ) {
+.config( function config( $routeProvider ) {
   $0
-}])
+})
+endsnippet
+
+snippet ngs "A config block for the $stateProvider" !b
+.config( function config( $stateProvider ) {
+  $0
+})
+endsnippet
+
+snippet state "A new $stateProvider.state" !b
+$stateProvider.state( '${1:state}', {
+  url: '${2:/url}',
+  controller: '${3:MyCtrl}',
+  templateUrl: '${4:my}.tpl.html'
+});
 endsnippet
 
 snippet rpwhen "A `when` statement on the $routeProvider" !b
 $routeProvider.when( '${1:/route}', {
   controller: '${2:RouteCtrl}',
   templateUrl: '${3:mod/file}.tpl.html'
+});$0
+endsnippet
+
+#
+# ExpressJS
+#
+
+snippet get " An app.get route." b
+app.get( '${1:/route}', function ( req, res) ) {
+  $2
 });$0
 endsnippet
 
